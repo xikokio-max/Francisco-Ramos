@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Francisco Ramos — Portefólio</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230e0c0b'/><text x='32' y='43' text-anchor='middle' font-family='system-ui,sans-serif' font-size='30' font-weight='800' fill='%23ff5a7a'>FR</text></svg>">
+  <style>
+     :root { --bg: #0e0c0b; --fg: #f4eee6; --mut: #a19b92; --ac: #ff5a7a; --ac2: #ffb86b; --line: rgba(244,238,230,.09); --line2: rgba(244,238,230,.18); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Inter", system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; overflow-x: hidden;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+    body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 99; opacity: .05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    ::selection { background: var(--ac); color: var(--bg); }
+    :focus-visible { outline: 2px solid var(--ac); outline-offset: 4px; border-radius: 4px; }
+    h1, h2, h3, .about, .cta { text-wrap: balance; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Capa */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; }
+    .hero::before { content: ""; position: absolute; width: 60vmax; height: 60vmax; right: -20vmax; top: -10vmax; border-radius: 50%;
+      background: radial-gradient(circle at 30% 70%, rgba(255,184,107,.3), transparent 50%), radial-gradient(circle, rgba(255,90,122,.55), transparent 60%); filter: blur(40px); animation: float 12s ease-in-out infinite alternate; z-index: -1; }
+    @keyframes float { to { transform: translate(-10vmax, 15vmax) scale(1.2); } }
+    .hello { color: var(--mut); letter-spacing: .3em; text-transform: uppercase; font-size: .8rem; }
+    .hero h1 { font-size: clamp(4rem, 15vw, 13rem); line-height: .85; font-weight: 900; letter-spacing: -.055em; margin: 1rem 0 1.5rem; }
+    .hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--ac), var(--ac2), var(--ac)); background-size: 200%;
+      -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 6s linear infinite; }
+    @keyframes shine { to { background-position: 200%; } }
+    .hero p { font-size: clamp(1.1rem, 2.2vw, 1.5rem); color: var(--mut); max-width: 32ch; }
+    .hero p b { color: var(--fg); font-weight: 600; }
+    .scroll { position: absolute; bottom: 2rem; color: var(--mut); font-size: .8rem; letter-spacing: .2em; }
+
+    /* Faixa em movimento */
+    .marquee { background: var(--ac); color: var(--bg); transform: rotate(-2deg) scale(1.04); overflow: hidden; white-space: nowrap; padding: 1.4rem 0; margin: 3rem 0; }
+    .marquee div { display: inline-block; animation: slide 25s linear infinite; font-size: clamp(2rem, 6vw, 4rem); font-weight: 900; text-transform: uppercase; letter-spacing: -.02em; }
+    .marquee span { color: var(--bg); opacity: .5; margin: 0 1.5rem; }
+    @keyframes slide { to { transform: translateX(-50%); } }
+
+    section { padding: 7rem 0; }
+    .label { color: var(--ac); font-size: .9rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; margin-bottom: 2rem; }
+    .about { font-size: clamp(1.4rem, 3.2vw, 2.4rem); line-height: 1.3; max-width: 22ch; font-weight: 500; }
+
+    /* Trabalhos */
+    .work { display: grid; grid-template-columns: 4rem 1fr auto; align-items: center; gap: 1.5rem; padding: 2.2rem 0; border-top: 1px solid #222; transition: padding .4s; }
+    .work:last-child { border-bottom: 1px solid #222; }
+    .work .n { color: var(--mut); font-variant-numeric: tabular-nums; }
+    .work h3 { font-size: clamp(2rem, 6vw, 4.5rem); line-height: 1; letter-spacing: -.03em; transition: color .3s, transform .4s; }
+    .work p { color: var(--mut); margin-top: .6rem; }
+    .work .go { width: 3.5rem; height: 3.5rem; border: 1px solid var(--line2); border-radius: 50%; display: grid; place-items: center; font-size: 1.3rem; transition: all .3s; }
+    .work { border-top-color: var(--line); background: linear-gradient(90deg, rgba(255,90,122,.06), transparent 70%) no-repeat 0 0 / 0 100%; transition: padding .4s, background-size .6s cubic-bezier(.2,.7,.2,1); }
+    .work:last-child { border-bottom-color: var(--line); }
+    .work:hover, .work:focus-visible { padding-left: 1rem; outline: none; background-size: 100% 100%; }
+    .work:hover h3, .work:focus-visible h3 { color: var(--ac); transform: skewX(-10deg); }
+    .work:hover .go, .work:focus-visible .go { background: var(--ac); border-color: var(--ac); color: var(--bg); transform: rotate(-45deg); }
+    .soon { font-size: .7rem; border: 1px solid var(--ac2); color: var(--ac2); padding: .1rem .6rem; border-radius: 999px; vertical-align: middle; margin-left: .5rem; letter-spacing: .1em; }
+    .thumbs { display: flex; gap: .6rem; margin-top: 1rem; }
+    .thumbs img { width: 7rem; height: 7rem; object-fit: cover; border-radius: .6rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,.8); transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+    .thumbs img:hover { transform: translateY(-4px) rotate(-2deg) scale(1.05); }
+
+    @media (hover: hover) {
+      .thumbs { max-height: 0; opacity: 0; overflow: hidden; margin-top: 0; transition: max-height .5s, opacity .5s, margin-top .5s; }
+      .work:hover .thumbs, .work:focus-visible .thumbs { max-height: 8rem; opacity: 1; margin-top: 1rem; }
+    }
+
+    /* Contactos */
+    .cta { font-size: clamp(2.5rem, 9vw, 7rem); font-weight: 900; line-height: 1; letter-spacing: -.04em; }
+    .cta a { background: linear-gradient(var(--ac), var(--ac)) 0 100% / 0 6px no-repeat; transition: background-size .5s; }
+    .cta a:hover, .cta a:focus-visible { background-size: 100% 6px; }
+    .links { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 3rem; color: var(--mut); }
+    .links a:hover { color: var(--ac); }
+    footer { padding: 2rem 0; color: var(--mut); border-top: 1px solid var(--line); font-size: .85rem; }
+
+    /* Aparecer ao fazer scroll */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .9s, transform .9s cubic-bezier(.2,.7,.2,1); }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* Intro */
+    body.locked { overflow: hidden; }
+ dos     .intro { position: fixed; inset: 0; z-index: 100; background: radial-gradient(circle at 50% 120%, rgba(255,90,122,.3), transparent 60%), var(--bg); display: grid; place-items: center; text-align: center; cursor: pointer;
+      clip-path: inset(0 0 0 0); transition: clip-path 1s cubic-bezier(.8,0,.2,1); }
+    .intro::before { content: ""; position: absolute; inset: 0; z-index: 1; background: var(--ac); transform: translateY(100%); transition: transform .6s cubic-bezier(.8,0,.2,1); }
+    .intro.out { clip-path: inset(0 0 100% 0); transition-delay: .5s; pointer-events: none; }
+    .intro.out::before { transform: none; }
+    .intro h2 { font-size: clamp(3rem, 10vw, 8rem); font-weight: 900; line-height: .95; letter-spacing: -.05em; }
+    .intro h2 span { display: inline-block; opacity: 0; transform: translateY(110%) rotate(6deg); filter: blur(12px); animation: up .9s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: calc(var(--i) * .15s); }
+    .intro h2 em { font-style: normal; background: linear-gradient(90deg, var(--ac), var(--ac2), var(--ac)); background-size: 200%;
+      -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 3s linear infinite; }
+    .intro button { position: relative; z-index: 0; margin-top: 2.5rem; background: none; border: 1px solid var(--line2); color: var(--fg); padding: .9rem 2rem; border-radius: 999px; font: inherit; letter-spacing: .2em; cursor: pointer; opacity: 0; animation: up .8s 1s forwards; transition: all .3s; }
+    .intro button:hover, .intro button:focus-visible { background: var(--ac); border-color: var(--ac); color: var(--bg); }
+    @keyframes up { to { opacity: 1; transform: none; filter: none; } }
+    .hero > * { opacity: 0; transform: translateY(60px); transition: opacity .9s .9s, transform 1.1s .9s cubic-bezier(.2,.7,.2,1); }
+    .hero > :nth-child(2) { transition-delay: 1.05s; } .hero > :nth-child(3) { transition-delay: 1.2s; } .hero > :nth-child(4) { transition-delay: 1.35s; }
+    body.ready .hero > * { opacity: 1; transform: none; }
+
+    @media (max-width: 600px) { .work { grid-template-columns: 1fr auto; } .work .n { display: none; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; } .reveal, .intro h2 span, .intro button, .hero > * { opacity: 1; transform: none; filter: none; } }
+  </style>
+</head>
+<body class="locked">
+  <div class="intro" id="intro" role="dialog" aria-label="Boas-vindas">
+    <div>
+      <h2><span style="--i:0">A sua</span> <span style="--i:1">marca</span><br><span style="--i:2">merece mais</span><br><span style="--i:3"><em>do que um template.</em></span></h2>
+      <button type="button" autofocus>ENTRAR →</button>
+    </div>
+  </div>
+  <header class="hero wrap">
+    <span class="hello">Olá, eu sou o</span>
+    <h1>Francisco<br><em>Ramos.</em></h1>
+    <p>Nada de modelos prontos. Crio <b>fotografia, redes sociais e sites feitos à medida</b>, com a ajuda da <b>inteligência artificial</b>, para a sua marca e para quem a procura.</p>
+    <span class="scroll">↓ SCROLL</span>
+  </header>
+
+  <div class="marquee" aria-hidden="true"><div>
+    Fotografia de produto<span>✦</span>Redes sociais<span>✦</span>Lojas online<span>✦</span>Web design<span>✦</span>Soluções com IA<span>✦</span>
+    Fotografia de produto<span>✦</span>Redes sociais<span>✦</span>Lojas online<span>✦</span>Web design<span>✦</span>Soluções com IA<span>✦</span>
+  </div></div>
+
+  <main class="wrap">
+    <section>
+      <p class="label">Sobre mim</p>
+      <p class="about reveal">Sou o Francisco, de Coimbra. Antes de criar, ouço: a sua história, os seus clientes, os seus objetivos. Cada projeto começa do zero e é desenhado só para si: fotografia, redes sociais, lojas online, sites e apps. Uso inteligência artificial para trabalhar mais depressa e testar mais ideias, e também para criar assistentes e automações à medida do seu negócio. As decisões finais são sempre tomadas por mim, a pensar na sua marca.</p>
+    </section>
+
+
+    <section>
+      <p class="label">Trabalhos selecionados</p>
+      <a class="work reveal" href="clara-doce.html">
+        <span class="n">01</span>
+        <div><h3>Clara Doce</h3><p>Loja online · Fotografia de produto · Gestão de redes sociais</p>
+          <p>Instagram: de cerca de 1900 para 2165 seguidores desde junho de 2025 (+14%)</p>
+          <div class="thumbs">
+            <img src="img/granols.jpg" alt="Clara Doce — fotografia de produto 1" loading="lazy">
+            <img src="img/IMG_0416.jpg" alt="Clara Doce — fotografia de produto 2" loading="lazy">
+            <img src="img/IMG_0699.jpg" alt="Clara Doce — fotografia de produto 3" loading="lazy">
+          </div>
+        </div>
+        <span class="go">→</span>
+      </a>
+      <a class="work reveal" href="https://francisdev.wixstudio.com/arfefilhos" target="_blank" rel="noopener">
+        <span class="n">02</span>
+        <div><h3>ARF Lda <span class="soon">EM BREVE</span></h3><p>Site institucional · Web design · Wix Studio</p></div>
+        <span class="go">→</span>
+      </a>
+      <a class="work reveal" href="https://francisdev.wixstudio.com/mykalb" target="_blank" rel="noopener">
+        <span class="n">03</span>
+        <div><h3>My Kalb <span class="soon">EM BREVE</span></h3><p>Site · Web design · Wix Studio</p></div>
+        <span class="go">→</span>
+      </a>
+      <a class="work reveal" href="https://vanessaabreuterapeuta.pt" target="_blank" rel="noopener">
+        <span class="n">04</span>
+        <div><h3>Vanessa Abreu Terapeuta</h3><p>Site · Web design</p></div>
+        <span class="go">→</span>
+      </a>
+      <div class="work reveal">
+        <span class="n">05</span>
+        <div><h3>Demolha · Lugrade <span class="soon">EM DESENVOLVIMENTO</span></h3><p>App de gestão de demolha · FlutterFlow</p></div>
+        <span class="go">→</span>
+      </div>
+    </section>
+
+    <section>
+      <p class="label">Contactos</p>
+      <p class="cta reveal">Conte-me a sua ideia.<br>Fazemos algo <a href="mailto:xikokio@gmail.com?subject=Projeto%20personalizado">só seu.</a></p>
+      <div class="links">
+        <a href="mailto:xikokio@gmail.com">xikokio@gmail.com</a>
+        <a href="https://wa.me/351917915352" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">© 2026 Francisco Ramos · Coimbra</footer>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && (e.target.classList.add('on'), io.unobserve(e.target))), { threshold: .15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    const intro = document.getElementById('intro');
+    const enter = () => {
+      if (!intro.isConnected || intro.classList.contains('out')) return;
+      intro.classList.add('out');
+      document.body.classList.replace('locked', 'ready');
+      setTimeout(() => intro.remove(), 1600);
+    };
+    intro.addEventListener('click', enter);
+    addEventListener('keydown', e => e.key === 'Escape' && enter());
+  </script>
+</body>
+</html>
